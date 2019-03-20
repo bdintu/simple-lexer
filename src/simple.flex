@@ -5,8 +5,6 @@ E			[Ee][+-]?{D}+
 FS			(f|F|l|L)
 IS			(u|U|l|L)*
 
-%option noyywrap
-
 %{
 #include <stdio.h>
 
@@ -129,7 +127,7 @@ yywrap()
 }
 
 
-comment()
+void comment()
 {
 	char c, c1;
 
@@ -161,8 +159,6 @@ void count()
 			column += 8 - (column % 8);
 		else
 			column++;
-
-	ECHO;
 }
 
 
@@ -182,4 +178,18 @@ int check_type()
 */
 
 	return(IDENTIFIER);
+}
+
+
+int main(int argc, char **argv)
+{
+    int token;
+
+    while((token = yylex()))
+        if (token == 300 || token == 301)
+            printf("[%d, %s]\n", token, yytext);
+        else
+            printf("[%d]\n", token);
+
+    return 0;
 }

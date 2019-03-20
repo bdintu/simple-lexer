@@ -1,9 +1,19 @@
+/******************************
+*
+* Presented by Adekovsky_CE
+*
+*****************************/
+
 #include <stdio.h>
 
-#define OK 0
+#define MAX 9999
 
-int main(int argc, char **argv) {
-    printf("Hello, world!\n");
+const int __zero = 0; /* dummy */
 
-    return OK;
+int main(int argc, char **argv)
+{
+
+	printf("Hello, world!\n");
+
+	return __zero;
 }

@@ -15,5 +15,5 @@ make
 
 ## Run
 ```sh 
-./simple ../test/hello.c
+./simple < ../test/hello.c
 ```
