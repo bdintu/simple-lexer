@@ -16,12 +16,14 @@ enum {TYPEDEF=700, EXTERN, STATIC, AUTO, REGISTER};
 enum {CHAR=800, SHORT, INT, LONG, SIGNED, UNSIGNED, FLOAT, DOUBLE, CONST, VOLATILE, VOID,STRUCT, UNION, ENUM, ELLIPSIS};
 enum {CASE=900, DEFAULT, IF, ELSE, SWITCH, WHILE, DO, FOR, GOTO, CONTINUE, BREAK, RETURN};
 
-void count();
+void count(void);
 void comment(void);
 %}
 
 %%
 "/*"			{ comment(); }
+"#"[^\n]*       {}
+"//"[^\n]*      {}
 
 "auto"			{ count(); return(AUTO); }
 "break"			{ count(); return(BREAK); }
@@ -133,16 +135,13 @@ void comment()
 
 loop:
 	while ((c = input()) != '*' && c != 0)
-		putchar(c);
+        {}
 
 	if ((c1 = input()) != '/' && c != 0)
 	{
 		unput(c1);
 		goto loop;
 	}
-
-	if (c != 0)
-		putchar(c1);
 }
 
 
